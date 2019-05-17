@@ -163,7 +163,7 @@ function validate(values){
 			errors[name] = 'กรุณากรอกข้อมูล'
 		}
 
-		console.info(type, name, values[name], required)
+		// console.info(type, name, values[name], required)
 	});
 	return errors;
 }
