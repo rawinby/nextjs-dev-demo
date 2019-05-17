@@ -2,6 +2,7 @@ import React , { Component } from "react";
 import PropTypes from "prop-types";
 import Head from 'next/head';
 import Swal from 'sweetalert2';
+import _ from 'lodash';
 
 import { connect } from "react-redux";
 import { reduxForm, Field, change, untouch } from "redux-form";
@@ -145,11 +146,7 @@ function validate(values){
 	// console.log(values);
 	const errors = {};
 	InputField.forEach(({ name, required, type, min, max }) => {
-		// console.info(values[name] , required , type)
-		if(!values[name] && required){
-			errors[name] = 'กรุณากรอกข้อมูล'
-		}
-		else if(values[name] && required && type == "email"){
+		if(values[name] && required && type == "email"){
 			let lastAtPos = values[name].lastIndexOf('@');
            	let lastDotPos = values[name].lastIndexOf('.');
            	if (!(lastAtPos < lastDotPos && lastAtPos > 0 && values[name].indexOf('@@') == -1 && lastDotPos > 2 && (values[name].length - lastDotPos) > 2)) {
@@ -159,6 +156,14 @@ function validate(values){
 		else if(values[name] && required && type == "number" && (values[name] < min || values[name] > max)){
 			errors[name] = 'กรุณากรอกข้อมูล ให้ถูกต้อง ('+ min +'-'+ max +')';
 		}
+		else if(_.isEmpty(values[name]) && required && type == "checkbox"){
+			errors[name] = 'กรุณาเลือกอย่างน้อย 1 รายการ'
+		}
+		else if(!values[name] && required){
+			errors[name] = 'กรุณากรอกข้อมูล'
+		}
+
+		console.info(type, name, values[name], required)
 	});
 	return errors;
 }

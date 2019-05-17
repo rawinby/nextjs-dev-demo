@@ -14,7 +14,7 @@ export const InputField = [
 		{value:"2", label:"Red"},
 		{value:"3", label:"Blue"},
 	]},
-	{ label:"Hobby", name: "checkbox", type: "checkbox",  required: false, options: [
+	{ label:"Hobby", name: "hobby", type: "checkbox",  required: true, options: [
 		{name:"hobby1", value:"1",label:"TV", checked: false},
 		{name:"hobby2", value:"2",label:"Radio", checked: false},
 		{name:"hobby3", value:"3",label:"Internet", checked: false},
