@@ -1,0 +1,23 @@
+{
+    "presets": [
+      "next/babel"
+    ],
+    "plugins": [
+      "inline-dotenv",
+      ["module-resolver", {
+        "root": ["./"]
+      }]
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          ["next/babel", {
+             "preset-env": {
+                "modules": "commonjs"
+              }
+          }]
+        ]
+      }
+    }
+  }
+  
